@@ -8,7 +8,7 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 # Copy app code
-COPY . .
+COPY .. .
 
 # Default command
 CMD ["python", "main.py"]

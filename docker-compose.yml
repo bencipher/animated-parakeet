@@ -3,7 +3,7 @@ services:
   fastapi:
     container_name: fastapi
     build:
-      context: .
+      context: ..
       dockerfile: Dockerfile
     volumes:
       - .:/app
