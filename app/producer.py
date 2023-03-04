@@ -9,7 +9,6 @@ from typing import Optional
 fake = Faker()
 
 
-
 def create_producer() -> Optional[KafkaProducer]:
     producer = None
     counter = 0
@@ -36,7 +35,6 @@ def create_producer() -> Optional[KafkaProducer]:
     return producer
 
 
-
 def get_registered_user():
     return {
         "name": fake.name(),
@@ -46,6 +44,12 @@ def get_registered_user():
 
 
 def send_messages(producer, topic, data):
+    with contextlib.closing(producer):
+        producer.send(topic, data)
+        print(data)
+
+
+def send__test_messages(producer, topic, data):
     exit_producer = False
     counter = 0
     with contextlib.closing(producer):
@@ -62,5 +66,6 @@ def send_messages(producer, topic, data):
                     counter = 0
             counter += 1
             time.sleep(4)
+
 
 registered_user = get_registered_user()
